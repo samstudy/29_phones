@@ -1,6 +1,6 @@
 # Microservice for Search Index of Phone Numbers
 
-#### The scenario is that: Work of pizza shop has some umcomfotable work flow,customer care specialist looking for clients by telephone numbers,those has been writed without any format like +79291112233 or 8 929 111-22-33.The task is make those numbers easy to search without country code and strict standart
+#### The scenario is that: Pizza shop has some uncomfortable work flow,customer care specialist looking for clients by telephone numbers,those has been writed any format like +79291112233 or 8 929 111-22-33.The task is make those numbers easy to search without country code and strict standart
 
 
 ## How to use
