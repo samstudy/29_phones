@@ -10,8 +10,8 @@ import os
 
 Base = automap_base()
 source_engine = create_engine('postgresql://score:Rysherat2@shopscore.devman.org:5432/shop')
-Dest_URI = ('sqlite://///'+ os.getcwd() +'/orders.db')
-dest_engine = create_engine(Dest_URI)
+dest_uri = ('sqlite://///'+ os.getcwd() +'/orders.db')
+dest_engine = create_engine(dest_uri)
 dest_session = sessionmaker(dest_engine)
 
 Base.prepare(source_engine, reflect=True)
