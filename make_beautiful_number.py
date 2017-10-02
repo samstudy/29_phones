@@ -9,6 +9,7 @@ session = Session()
 
 
 def make_beautiful_number():
+    sleeping_time = 180
     orders = session.query(Orders).all()
     connection = engine.connect()
     trans = connection.begin()
@@ -21,7 +22,7 @@ def make_beautiful_number():
         connection.execute
         ("UPDATE orders set beautiful_number = ? where id=? ",(beautiful_number, order.id))
     trans.commit()
-    time.sleep(180)
+    time.sleep(sleeping_time)
 
 
 if __name__ == "__main__":
