@@ -17,10 +17,10 @@ depends_on = None
 
 
 def upgrade():
-    op.add_column('orders', sa.Column('beautiful_number', sa.Integer))
+    op.add_column('orders', sa.Column('upd_number', sa.Integer))
     pass
 
 
 def downgrade():
-    op.drop_column('orders', 'beautiful_number')
+    op.drop_column('orders', 'upd_number')
     pass

@@ -1,28 +1,28 @@
-from sqlalchemy.orm import sessionmaker, relationship
-from copy_db import source_engine,dest_engine,Orders
-import os, phonenumbers, time
+import phonenumbers, time
 from phonenumbers import carrier
+from create_local_db import destination_session,engine
+from sqlalchemy import MetaData,Table, Column, Integer
+
+SLEEP_TIME = 180
+metadata = MetaData()
 
 
-Session = sessionmaker(bind=dest_engine)
-session = Session()
+updated_orders = Table('updated_orders',metadata,
+                 Column('contact_phone',Integer),
+                 Column('upd_number',Integer))    
 
 
 def make_beautiful_number():
-    sleeping_time = 180
-    orders = session.query(Orders).all()
     connection = engine.connect()
-    trans = connection.begin()
-    for order in orders:
-        connection.execute
-        ("INSERT or IGNORE into orders(id,contact_name,contact_phone,contact_email,status,comment,price) VALUES(?,?,?,?,?,?,?)",
-        (order.id,order.contact_name,order.contact_phone,
-        order.contact_email,order.status,order.comment.order.price))
-        beautiful_number = phonenumbers.parse(order.contact_phone, "RU").national_number
-        connection.execute
-        ("UPDATE orders set beautiful_number = ? where id=? ",(beautiful_number, order.id))
-    trans.commit()
-    time.sleep(sleeping_time)
+    transaction = connection.begin()
+    target_orders = destination_session.query(updated_orders).filter(updated_orders.c.upd_number.is_(None))
+    for order in target_orders:
+        upd_number = phonenumbers.parse(order.contact_phone, "RU").national_number
+        inserted_number = updated_orders.update().values(upd_number = upd_number).\
+                                                  where(updated_orders.c.contact_phone == order.contact_phone)
+        connection.execute(inserted_number)
+    transaction.commit()
+    time.sleep(SLEEP_TIME)
 
 
 if __name__ == "__main__":
