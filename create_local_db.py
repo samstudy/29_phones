@@ -9,9 +9,10 @@ engine = create_engine('URI')
 destination_session = Session(engine)
 Base = declarative_base()
 
+
 class NewOrders(Base):
     __tablename__ = 'updated_orders'
-    orders_id = sa.Column(sa.Integer, primary_key = True)
+    orders_id = sa.Column(sa.Integer, primary_key=True)
     created = sa.Column(sa.DateTime)
     status = sa.Column(sa.String)
     confirmed = sa.Column(sa.DateTime)
@@ -22,7 +23,7 @@ class NewOrders(Base):
     contact_name = sa.Column(String)
 
     def __init__(self, orders_id, created, status, confirmed,
-                 contact_phone, contact_email, price, comment,contact_name):
+                 contact_phone, contact_email, price, comment, contact_name):
         self.orders_id = orders_id
         self.created = created
         self.status = status
@@ -32,6 +33,7 @@ class NewOrders(Base):
         self.price = price
         self.comment = comment
         self.contact_name = contact_name
+
 
 if __name__ == "__main__":
     Base.metadata.create_all(engine)

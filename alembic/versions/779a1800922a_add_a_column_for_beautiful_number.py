@@ -1,7 +1,7 @@
 """Add a column for beautiful number
 
 Revision ID: 779a1800922a
-Revises: 
+Revises:
 Create Date: 2017-09-25 21:27:29.090345
 
 """
